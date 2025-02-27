@@ -23,8 +23,8 @@ const MapView = () => {
 
   useEffect(() => {
     if (mapContainerRef.current) {
-      mapContainerRef.current.innerHTML = ""; // Ensure it's empty before mounting Mapbox
-    }
+    mapContainerRef.current.innerHTML = ""; // Ensure it's empty before mounting Mapbox
+  }
 
     // Initialize the Mapbox map
     mapRef.current = new mapboxgl.Map({

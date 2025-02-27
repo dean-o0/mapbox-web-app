@@ -60,3 +60,12 @@ code {
 .file-upload-button label {
   cursor: pointer;
 }
+
+/* Mobile view: move the file upload button to the bottom-left corner */
+@media (max-width: 768px) {
+  .file-upload-container {
+    top: auto;
+    bottom: 30px;
+    left: 4px;
+  }
+}
