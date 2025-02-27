@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Container for the file input to style it similarly to the geocoder input */
+.file-upload-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+/* Style the file input itself */
+.file-upload-container input[type="file"] {
+  display: none; /* Hide the default file input */
+}
+
+/* Custom button style for file input */
+.file-upload-button {
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.file-upload-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Optional: Style for the file input label, making it look like a button */
+.file-upload-button label {
+  cursor: pointer;
+}

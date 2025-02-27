@@ -1,0 +1,69 @@
+import React, { useEffect, useRef, useState } from "react";
+
+import FileUpload from "./FileUpload";
+import GeoJsonLayer from "./GeoJsonLayer";
+import MAPBOX_TOKEN from "../utility/mapboxConfig";
+import { coordinatesGeocoder } from "./SearchBar";
+
+// If you want a hard-coded Kml document use ParseKml
+// import ParseKml from "./ParseKml";
+
+import mapboxgl from "mapbox-gl";
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+
+import "mapbox-gl/dist/mapbox-gl.css";
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+
+mapboxgl.accessToken = MAPBOX_TOKEN;
+
+const MapView = () => {
+  const mapContainerRef = useRef(null);
+  const mapRef = useRef(null);
+  const [geojson, setGeojson] = useState(null);
+
+  useEffect(() => {
+    // Initialize the Mapbox map
+    mapRef.current = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      style: "mapbox://styles/mapbox/standard-satellite",
+      projection: "globe",
+      zoom: 2.5,
+      center: [25, -5],
+    });
+
+    mapRef.current.addControl(new mapboxgl.NavigationControl(), "bottom-right");
+
+    mapRef.current.on("style.load", () => {
+      mapRef.current.setFog({});
+    });
+
+    mapRef.current.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        localGeocoder: coordinatesGeocoder,
+        zoom: 4,
+        placeholder: 'Try: -40, 170',
+        mapboxgl: mapboxgl,
+        reverseGeocode: true
+      }),
+      "top-right"
+    );
+
+    // Cleanup function to remove the map instance
+    return () => mapRef.current.remove();
+  }, []);
+
+  return (
+    <div className="map-container" ref={mapContainerRef} style={{ height: '100vh' }}>
+
+      <FileUpload setGeojson={setGeojson} />
+
+      {/* Render layers */}
+      <GeoJsonLayer mapRef={mapRef} geojson={geojson} />
+
+      {/* <ParseKml setGeojson={setGeojson} /> */}
+    </div>
+  );
+};
+
+export default MapView;

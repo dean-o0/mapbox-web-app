@@ -3,14 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^5.0.3",
+    "@mapbox/togeojson": "^0.16.2",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "@tmcw/togeojson": "^6.0.1",
+    "@types/mapbox__mapbox-gl-geocoder": "^5.0.0",
+    "@types/mapbox-gl": "^3.4.1",
+    "fs": "^0.0.1-security",
+    "mapbox-gl": "^3.10.0",
+    "parse-kml": "^1.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xmldom": "^0.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,5 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "ajv": "^7.2.4",
+    "typescript": "^5.7.3"
   }
 }
