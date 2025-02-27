@@ -55,15 +55,17 @@ const MapView = () => {
   }, []);
 
   return (
-    <div className="map-container" ref={mapContainerRef} style={{ height: '100vh' }}>
-
+    <>
       <FileUpload setGeojson={setGeojson} />
+      
+      <div className="map-container" ref={mapContainerRef} style={{ height: '100vh' }}>
 
-      {/* Render layers */}
-      <GeoJsonLayer mapRef={mapRef} geojson={geojson} />
+        {/* Render layers */}
+        <GeoJsonLayer mapRef={mapRef} geojson={geojson} />
 
-      {/* <ParseKml setGeojson={setGeojson} /> */}
-    </div>
+        {/* <ParseKml setGeojson={setGeojson} /> */}
+      </div>
+    </>
   );
 };
 
