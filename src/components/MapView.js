@@ -22,6 +22,10 @@ const MapView = () => {
   const [geojson, setGeojson] = useState(null);
 
   useEffect(() => {
+    if (mapContainerRef.current) {
+      mapContainerRef.current.innerHTML = ""; // Ensure it's empty before mounting Mapbox
+    }
+
     // Initialize the Mapbox map
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
@@ -57,7 +61,7 @@ const MapView = () => {
   return (
     <>
       <FileUpload setGeojson={setGeojson} />
-      
+
       <div className="map-container" ref={mapContainerRef} style={{ height: '100vh' }}>
 
         {/* Render layers */}
