@@ -25,7 +25,8 @@ const MapView = () => {
     // Initialize the Mapbox map
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: "mapbox://styles/mapbox/standard-satellite",
+      // style: "mapbox://styles/mapbox/standard-satellite",
+      style: "mapbox://styles/mapbox/streets-v11",
       projection: "globe",
       zoom: 2.5,
       center: [25, -5],
