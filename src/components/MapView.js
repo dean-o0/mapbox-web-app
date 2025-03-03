@@ -5,9 +5,6 @@ import GeoJsonLayer from "./GeoJsonLayer";
 import MAPBOX_TOKEN from "../utility/mapboxConfig";
 import { coordinatesGeocoder } from "./SearchBar";
 
-// If you want a hard-coded Kml document use ParseKml
-// import ParseKml from "./ParseKml";
-
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 
@@ -23,8 +20,8 @@ const MapView = () => {
 
   useEffect(() => {
     if (mapContainerRef.current) {
-    mapContainerRef.current.innerHTML = ""; // Ensure it's empty before mounting Mapbox
-  }
+      mapContainerRef.current.innerHTML = ""; // Ensure it's empty before mounting Mapbox
+    }
 
     // Initialize the Mapbox map
     mapRef.current = new mapboxgl.Map({
@@ -67,7 +64,6 @@ const MapView = () => {
         {/* Render layers */}
         <GeoJsonLayer mapRef={mapRef} geojson={geojson} />
 
-        {/* <ParseKml setGeojson={setGeojson} /> */}
       </div>
     </>
   );
