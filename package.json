@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.3",
-    "@mapbox/togeojson": "^0.16.2",
+    "@mapbox/togeojson": "github:mapbox/togeojson",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "ajv": "^7.2.4",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "worker-loader": "^3.0.8"
   }
 }
