@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mapbox-web-app/static/css/main.0035a780.css",
+    "main.css": "/mapbox-web-app/static/css/main.aa74a06d.css",
     "main.js": "/mapbox-web-app/static/js/main.2101f817.js",
     "static/js/453.18d813a8.chunk.js": "/mapbox-web-app/static/js/453.18d813a8.chunk.js",
     "index.html": "/mapbox-web-app/index.html",
-    "main.0035a780.css.map": "/mapbox-web-app/static/css/main.0035a780.css.map",
+    "main.aa74a06d.css.map": "/mapbox-web-app/static/css/main.aa74a06d.css.map",
     "main.2101f817.js.map": "/mapbox-web-app/static/js/main.2101f817.js.map",
     "453.18d813a8.chunk.js.map": "/mapbox-web-app/static/js/453.18d813a8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0035a780.css",
+    "static/css/main.aa74a06d.css",
     "static/js/main.2101f817.js"
   ]
 }
