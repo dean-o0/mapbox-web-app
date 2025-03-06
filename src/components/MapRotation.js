@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const MapRotation = ({ mapRef }) => {
+const MapRotation = ({ mapRef, mapLoaded }) => {
   const [isSpinning, setIsSpinning] = useState(true);
   const userInteracting = useRef(false);
   const rotationInterval = useRef(null);
 
   useEffect(() => {
-    if (!mapRef.current) return;
+    if (!mapRef.current || !mapLoaded) return;
+    startRotation();
 
     const handleInteractionStart = () => {
       userInteracting.current = true;
@@ -36,7 +37,7 @@ const MapRotation = ({ mapRef }) => {
       mapRef.current.off("rotateend", handleInteractionEnd);
       mapRef.current.off("moveend", handleInteractionEnd);
     };
-  }, [mapRef, isSpinning]);
+  }, [mapRef, mapLoaded]);
 
   const startRotation = () => {
     if (!mapRef.current || !isSpinning || userInteracting.current) return;

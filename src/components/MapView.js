@@ -16,6 +16,7 @@ const MapView = () => {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const [geojson, setGeojson] = useState(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
   useEffect(() => {
     if (mapContainerRef.current) {
@@ -35,6 +36,7 @@ const MapView = () => {
 
     mapRef.current.on("style.load", () => {
       mapRef.current.setFog({});
+      setMapLoaded(true);
     });
 
     mapRef.current.addControl(
@@ -60,7 +62,7 @@ const MapView = () => {
         <GeoJsonLayer mapRef={mapRef} geojson={geojson} />
       </div>
       {/* Keep MapRotation outside of the map container */}
-      <MapRotation mapRef={mapRef} />
+      <MapRotation mapRef={mapRef} mapLoaded={mapLoaded} />
     </>
   );
 };
