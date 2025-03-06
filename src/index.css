@@ -36,7 +36,8 @@ code {
 
 /* Style the file input itself */
 .file-upload-container input[type="file"] {
-  display: none; /* Hide the default file input */
+  display: none;
+  /* Hide the default file input */
 }
 
 /* Custom button style for file input */
@@ -77,4 +78,22 @@ code {
   color: #666;
   font-style: italic;
   white-space: nowrap;
+}
+
+.rotation-button {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3386c0;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  z-index: 10;
+}
+
+.rotation-button:hover {
+  background-color: #2a6f9b;
 }

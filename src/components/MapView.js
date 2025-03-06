@@ -1,15 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-
-import FileUpload from "./FileUpload";
-import GeoJsonLayer from "./GeoJsonLayer";
-import MAPBOX_TOKEN from "../utility/mapboxConfig";
-import { coordinatesGeocoder } from "./SearchBar";
-
 import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
+import MAPBOX_TOKEN from "../utility/mapboxConfig";
+import { coordinatesGeocoder } from "./SearchBar";
+import FileUpload from "./FileUpload";
+import GeoJsonLayer from "./GeoJsonLayer";
+import MapRotation from "./MapRotation";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
@@ -23,14 +22,13 @@ const MapView = () => {
       mapContainerRef.current.innerHTML = ""; // Ensure it's empty before mounting Mapbox
     }
 
-    // Initialize the Mapbox map
+    // Initialize Mapbox
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      // style: "mapbox://styles/mapbox/standard-satellite",
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: "mapbox://styles/mapbox/satellite-v9",
       projection: "globe",
-      zoom: 2.5,
-      center: [25, -5],
+      zoom: 1.75,
+      center: [-90, 40],
     });
 
     mapRef.current.addControl(new mapboxgl.NavigationControl(), "bottom-right");
@@ -44,27 +42,25 @@ const MapView = () => {
         accessToken: mapboxgl.accessToken,
         localGeocoder: coordinatesGeocoder,
         zoom: 4,
-        placeholder: 'Try: -40, 170',
+        placeholder: "Try: -40, 170",
         mapboxgl: mapboxgl,
-        reverseGeocode: true
+        reverseGeocode: true,
       }),
       "top-right"
     );
 
-    // Cleanup function to remove the map instance
     return () => mapRef.current.remove();
   }, []);
 
   return (
     <>
       <FileUpload setGeojson={setGeojson} />
-
-      <div className="map-container" ref={mapContainerRef} style={{ height: '100vh' }}>
-
-        {/* Render layers */}
+      {/* Ensure the map container is below the button */}
+      <div className="map-container" ref={mapContainerRef} style={{ height: "100vh" }}>
         <GeoJsonLayer mapRef={mapRef} geojson={geojson} />
-
       </div>
+      {/* Keep MapRotation outside of the map container */}
+      <MapRotation mapRef={mapRef} />
     </>
   );
 };
