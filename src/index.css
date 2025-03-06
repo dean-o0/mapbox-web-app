@@ -65,9 +65,8 @@ code {
 /* Mobile view: move the file upload button to the bottom-left corner */
 @media (max-width: 768px) {
   .file-upload-container {
-    top: auto;
-    bottom: 30px;
-    left: 4px;
+    top: 15px;
+    left: 15px;
   }
 }
 
@@ -80,6 +79,8 @@ code {
   white-space: nowrap;
 }
 
+
+/* Style for the rotation button */
 .rotation-button {
   position: absolute;
   top: 20px;
@@ -96,4 +97,20 @@ code {
 
 .rotation-button:hover {
   background-color: #2a6f9b;
+}
+
+/* Mobile view: move the rotation button to the bottom-right corner */
+@media (max-width: 768px) {
+  .rotation-button {
+    top: auto;
+    bottom: 50px;
+    right: 4px;
+  }
+}
+
+/* Mobile view: change the search-bar */
+@media (max-width: 768px) {
+  .mapboxgl-ctrl-geocoder {
+    width: 50%;
+  }
 }

@@ -8,7 +8,6 @@ const MapRotation = ({ mapRef }) => {
   useEffect(() => {
     if (!mapRef.current) return;
 
-    // Event listeners to detect user interaction
     const handleInteractionStart = () => {
       userInteracting.current = true;
       stopRotation();
@@ -26,7 +25,6 @@ const MapRotation = ({ mapRef }) => {
     mapRef.current.on("rotateend", handleInteractionEnd);
     mapRef.current.on("moveend", handleInteractionEnd);
 
-    // Start rotation on mount
     startRotation();
 
     return () => {
@@ -46,11 +44,24 @@ const MapRotation = ({ mapRef }) => {
     stopRotation(); // Clear existing interval if any
     rotationInterval.current = setInterval(() => {
       if (mapRef.current) {
+        const zoom = mapRef.current.getZoom();
+        const maxSpinZoom = 5;
+        const slowSpinZoom = 3;
+        const secondsPerRevolution = 120;
+
+        if (zoom >= maxSpinZoom) return;
+
+        let distancePerSecond = 360 / secondsPerRevolution;
+        if (zoom > slowSpinZoom) {
+          const zoomDif = (maxSpinZoom - zoom) / (maxSpinZoom - slowSpinZoom);
+          distancePerSecond *= zoomDif;
+        }
+
         const center = mapRef.current.getCenter();
-        center.lng -= 0.2; // Adjust rotation speed (smaller = slower)
-        mapRef.current.easeTo({ center, duration: 100, easing: (n) => n });
+        center.lng -= distancePerSecond;
+        mapRef.current.easeTo({ center, duration: 1000, easing: (n) => n });
       }
-    }, 100); // Adjust interval timing if necessary
+    }, 1000);
   };
 
   const stopRotation = () => {
@@ -62,7 +73,7 @@ const MapRotation = ({ mapRef }) => {
 
   const toggleRotation = () => {
     setIsSpinning((prev) => {
-      if (!prev) startRotation(); // Restart rotation if enabling
+      if (!prev) startRotation();
       else stopRotation();
       return !prev;
     });
